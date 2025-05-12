@@ -8,13 +8,13 @@ document.querySelector('form').addEventListener('submit', function(event) {
       method: 'POST',
       body: formData
   })
-  .then(response => response.text())
+  .then(response => response.json())
   .then(result => {
       console.log('Result:', result);
-      if (result === 'success') {
+      if (result.ok) {
           alert('Thank you! Your message has been sent successfully.');
           document.querySelector('form').reset(); // Reset the form
-      } else if (result === 'error') {
+      } else if (result.status === 500) {
           alert('Sorry, there was an error sending your message. Please try again later.');
       } else if (result === 'validation_error') {
           alert('Please fill in all the required fields.');
