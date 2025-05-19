@@ -87,5 +87,27 @@
 // window.open(whatsappUrl, '_blank');
 //   });
 
+function getAge(birthDateString) {
+  const today = new Date();
+  const birthDate = new Date(birthDateString);
+  
+  // The Temporal API would be better for this, but it's not widely supported yet
+  const diffTime = Math.abs(today - birthDate);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+  const diffYears = Math.floor(diffDays / 365.25);
+  
+  return diffYears;
+}
+
+// Example
+const age = document.querySelectorAll("#age")
+
+  age.forEach((items) => {
+    items.innerHTML = getAge("2006-05-28")
+  })
+
+  const date = new Date().getFullYear()
+
+  document.getElementById("copyright-date").innerHTML = date
 
  })(jQuery);
